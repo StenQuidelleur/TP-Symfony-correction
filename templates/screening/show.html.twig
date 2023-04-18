@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Screening{% endblock %}
+
+{% block body %}
+    <h1>Screening</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ screening.id }}</td>
+            </tr>
+            <tr>
+                <th>Start_time</th>
+                <td>{{ screening.startTime ? screening.startTime|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>End_time</th>
+                <td>{{ screening.endTime ? screening.endTime|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ screening.price }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-secondary" href="{{ path('app_screening_index') }}">back to list</a>
+
+    <a class="btn btn-warning" href="{{ path('app_screening_edit', {'id': screening.id}) }}">edit</a>
+
+    {{ include('screening/_delete_form.html.twig') }}
+{% endblock %}

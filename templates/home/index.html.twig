@@ -1,0 +1,27 @@
+{% trans_default_domain 'tp-symfony' %}
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    <div class="text-end">
+        <div class="dropdown show">
+            <a class="btn btn-primary dropdown-toggle" href="" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Local
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="{{ path('home_fr') }}">FR</a>
+                <a class="dropdown-item" href="{{ path('home_en') }}">EN</a>
+            </div>
+        </div>
+    </div>
+    <h1 class="text-center">{{ 'homepage.title'|trans }}</h1>
+    <div class="container my-5">
+        <div class="row" style="gap: 20px;">
+            {% for movie in movies %}
+                {% include('home/_card.html.twig') with {'movie': movie, 'screenings': screenings} %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

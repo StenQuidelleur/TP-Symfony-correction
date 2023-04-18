@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Screening index{% endblock %}
+
+{% block body %}
+    <h1>Screening index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Start_time</th>
+                <th>End_time</th>
+                <th>Price</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for screening in screenings %}
+            <tr>
+                <td>{{ screening.id }}</td>
+                <td>{{ screening.startTime ? screening.startTime|date('Y-m-d H:i') : '' }}</td>
+                <td>{{ screening.endTime ? screening.endTime|date('Y-m-d H:i') : '' }}</td>
+                <td>{{ screening.price }}</td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('app_screening_show', {'id': screening.id}) }}">show</a>
+                    <a class="btn btn-warning" href="{{ path('app_screening_edit', {'id': screening.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-info" href="{{ path('app_screening_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,14 @@
+<div class="card p-2" style="width: 18rem;">
+  <img class="card-img-top" src="{{ asset('asset/images/' ~ movie.image) }}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{ movie.title }}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Release: {{ movie.releaseDate|date('Y-m-d') }}</h6>
+    <h6 class="card-subtitle mb-2 text-muted">Duration: {{ movie.duration }} min</h6>
+    <p class="card-text">{{ movie.description|slice(0,100) }}...</p>
+    {% for screening in screenings %}
+        {% if screening.movie == movie %}
+            <a href="{{ path('app_screening', {'id': screening.id}) }}" class="btn btn-primary">{{ screening.startTime|date('H:i') }}</a>
+        {% endif %}
+    {% endfor %}
+  </div>
+</div>
